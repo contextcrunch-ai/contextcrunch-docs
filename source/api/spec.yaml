@@ -1,0 +1,69 @@
+openapi: 3.0.0
+info:
+  title: Example API
+  version: 1.0.0
+paths:
+  /:
+    post:
+      summary: Example API endpoint
+      operationId: postExample
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                input:
+                  type: object
+                  required:
+                    - context
+                    - prompt
+                  properties:
+                    context:
+                      type: string
+                      description: "This is some context"
+                    prompt:
+                      type: string
+                      description: "This is a question about the context"
+                    type:
+                      type: string
+                      description: "Type of the request, either 'conversation' or 'rag'"
+                      enum:
+                        - conversation
+                        - rag
+                      default: rag
+                    compression_ratio:
+                      type: number
+                      description: "Compression ratio, must be between 0.5 and 1 (exclusive)"
+                      minimum: 0.5
+                      exclusiveMaximum: 1.0
+                      default: 0.9
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  output:
+                    type: string
+                  tokensCharged:
+                    type: integer
+                  outputTokens:
+                    type: integer
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+security:
+  - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
