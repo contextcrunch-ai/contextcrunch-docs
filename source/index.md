@@ -3,6 +3,12 @@ hide-toc: true
 ---
 # Welcome to ContextCrunch's documentation
 
+## Quickstart
+
+- [API](api/quickstart.md)
+- [LangChain](langchain/quickstart.md)
+- [Python](python/quickstart.md)
+
 ```{toctree}
 :caption: Accessing the API
 :hidden:
@@ -17,7 +23,6 @@ python/index.md
 :hidden:
 
 concepts/index.md
-use_cases/index.md
 billing.md
 
 support.md
